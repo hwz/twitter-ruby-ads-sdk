@@ -7,6 +7,7 @@ module TwitterAds
     include TwitterAds::DSL
     include TwitterAds::Resource
     include TwitterAds::Persistence
+    include TwitterAds::Batch
 
     attr_reader :account
 
@@ -27,6 +28,10 @@ module TwitterAds
     property :daily_budget_amount_local_micro
     property :total_budget_amount_local_micro
 
+    #sdk-only
+    property :to_delete
+
+    BATCH_RESOURCE_COLLECTION = '/1/batch/accounts/{account_id}/campaigns'
     RESOURCE_COLLECTION = '/1/accounts/%{account_id}/campaigns'.freeze # @api private
     RESOURCE_STATS      = '/1/stats/accounts/%{account_id}'.freeze # @api private
     RESOURCE_ASYNC_STATS = '/1/stats/jobs/accounts/%{account_id}'.freeze # @api private

@@ -6,6 +6,7 @@ module TwitterAds
 
     include TwitterAds::DSL
     include TwitterAds::Persistence
+    include TwitterAds::Batch
     include TwitterAds::Resource::InstanceMethods
 
     attr_reader :account
@@ -23,6 +24,10 @@ module TwitterAds
     property :tailored_audience_expansion, type: :bool
     property :tailored_audience_type
 
+    #sdk-only
+    property :to_delete
+
+    BATCH_RESOURCE_COLLECTION = '/1/batch/accounts/{account_id}/targeting_criteria'
     RESOURCE_COLLECTION = '/1/accounts/%{account_id}/targeting_criteria'.freeze # @api private
     RESOURCE            = '/1/accounts/%{account_id}/targeting_criteria/%{id}'.freeze # @api private
 
